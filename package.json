@@ -1,27 +1,53 @@
 {
-  "name": "just",
+  "name": "render-it",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "webpack": "webpack --config ./webpack/index.babel.js",
     "test": "mocha -r ts-node/register src/**/*spec.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+  ],
+  "author": {
+    "name" : "Katarzyna Ziomek-Zdanowicz",
+    "email" : "ziomecka78@gmail.com",
+    "url" : "https://katarzyna-ziomek-zdanowicz.herokuapp.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/ziomecka/render-it#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ziomecka/render-it.git"
+  },
   "devDependencies": {
     "@babel/core": "7.6.4",
     "@babel/preset-env": "7.6.3",
+    "@babel/preset-typescript": "7.6.0",
     "@babel/register": "7.6.2",
     "@types/chai": "4.2.4",
     "@types/mocha": "5.2.7",
     "@types/node": "12.11.6",
+    "babel-loader": "8.0.6",
     "chai": "4.2.0",
+    "clean-webpack-plugin": "3.0.0",
+    "dotenv": "8.2.0",
+    "lerna": "^3.18.3",
     "mocha": "6.2.2",
     "sinon": "7.5.0",
+    "ts-loader": "6.2.1",
     "ts-node": "8.4.1",
-    "typescript": "3.6.4"
+    "typescript": "3.6.4",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.9"
   },
   "dependencies": {
+    "publisher-subscriber-pattern": "2.0.4",
+    "rendering-recursive-client-side": "0.1.2",
+    "rendering-recursive-server-side": "0.1.2"
+  },
+  "engines": {
+    "node": "12.11.1",
+    "npm": "6.4.1"
   }
 }

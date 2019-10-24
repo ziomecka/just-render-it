@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "baseUrl": ".",
-    "outDir": "./tsc",
+    "declaration": true,
+    "noEmit": false,
     "module": "commonjs",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "src/**/*"
     ],
     "lib": [ "dom", "es2015" ],
   },
@@ -15,6 +17,7 @@
     "./src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "spec"
   ]
 }

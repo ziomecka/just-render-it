@@ -1,0 +1,7 @@
+{
+  "packages": [
+    "prodBundle/client/*",
+    "prodBundle/server/*"
+  ],
+  "version": "0.0.0"
+}
