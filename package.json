@@ -23,5 +23,6 @@
     "typescript": "3.6.4"
   },
   "dependencies": {
+    "rendering-recursive-client-side": "0.1.2"
   }
 }
