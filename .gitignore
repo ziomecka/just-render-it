@@ -2,4 +2,6 @@ node_modules
 .env
 bundle
 *Bundle
+!prodBundle/client/package.json
+!prodBundle/server/package.json
 lerna-debug.log
