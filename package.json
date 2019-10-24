@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "publish": "npm run webpack:prod && lerna publish",
     "webpack": "webpack --config ./webpack/index.babel.js",
+    "webpack:prod": "./set-env-vars.sh production && npm run webpack",
+    "webpack:dev": "./set-env-vars.sh development && npm run webpack",
     "test": "mocha -r ts-node/register src/**/*spec.js"
   },
   "keywords": [
