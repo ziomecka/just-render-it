@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "webpack": "webpack --config ./webpack/index.babel.js",
     "test": "mocha -r ts-node/register src/**/*spec.js"
   },
   "keywords": [],
