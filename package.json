@@ -29,6 +29,7 @@
     "webpack-cli": "3.3.9"
   },
   "dependencies": {
+    "publisher-subscriber-pattern": "2.0.4",
     "rendering-recursive-client-side": "0.1.2",
     "rendering-recursive-server-side": "0.1.2"
   }
