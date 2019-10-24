@@ -1,0 +1,1 @@
+export { HTMLTag } from './common/';
