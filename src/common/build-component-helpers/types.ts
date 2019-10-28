@@ -3,6 +3,7 @@ export const enum CreateComponentHelpers {
   controlInternalState = 'controlInternalState',
   modifyBodyClassList = 'modifyBodyClassList',
   windowEventsPublisher = 'windowEventsPublisher',
+  documentEventsPublisher = 'documentEventsPublisher',
 }
 
 type HelperFunction = (...args: unknown[]) => unknown;
@@ -12,4 +13,5 @@ export type Helpers = {
   [CreateComponentHelpers.controlBodyScroll]: HelperFunction;
   [CreateComponentHelpers.controlInternalState]: HelperFunction;
   [CreateComponentHelpers.windowEventsPublisher]: HelperFunction;
+  [CreateComponentHelpers.documentEventsPublisher]: HelperFunction;
 };

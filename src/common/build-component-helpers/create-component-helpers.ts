@@ -13,6 +13,10 @@ const createComponentHelpers: Map<CreateComponentHelpers, unknown> = new Map([
     CreateComponentHelpers.windowEventsPublisher,
     import('./helpers/window-events-publisher') as unknown,
   ],
+  [
+    CreateComponentHelpers.documentEventsPublisher,
+    import('./helpers/document-events-publisher') as unknown,
+  ],
 ]);
 
 export const getCreateComponentHelper = (
