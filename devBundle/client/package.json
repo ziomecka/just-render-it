@@ -1,0 +1,19 @@
+{
+  "name": "render-it-client",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "types": "index.d.js",
+  "keywords": [],
+  "author": {
+    "name": "Katarzyna Ziomek-Zdanowicz",
+    "email": "ziomecka78@gmail.com",
+    "url": "https://katarzyna-ziomek-zdanowicz.herokuapp.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/ziomecka/render-it#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ziomecka/render-it.git"
+  }
+}
