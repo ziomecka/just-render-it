@@ -1,6 +1,7 @@
 export const enum CreateComponentHelpers {
   controlBodyScroll = 'controlBodyScroll',
   controlInternalState = 'controlInternalState',
+  enqueueScript = 'enqueueScript',
   modifyBodyClassList = 'modifyBodyClassList',
   windowEventsPublisher = 'windowEventsPublisher',
   documentEventsPublisher = 'documentEventsPublisher',
@@ -13,6 +14,8 @@ export type Helpers = {
     import('./helpers.types').ControlInternalState;
   [CreateComponentHelpers.documentEventsPublisher]?:
     import('./helpers.types').Publisher;
+  [CreateComponentHelpers.enqueueScript]?:
+    import('./helpers.types').EnqueueScript;
   [CreateComponentHelpers.modifyBodyClassList]?:
     import('./helpers.types').ModifyBodyClassList;
   [CreateComponentHelpers.windowEventsPublisher]?:

@@ -1,19 +1,11 @@
 import {
   ClassNames,
+  ComponentFunction,
   Helpers,
 } from '../common/';
-import { ComponentFunction } from './types';
-import { componentDidMountQueue } from './enqueue-script';
-
-interface HydrateProps {
-  rootId: string;
-  Component: ComponentFunction;
-  classNames? : ClassNames;
-  helpers?: Helpers;
-}
 
 export const hydrate = (
-  ({ Component, classNames, rootId, helpers }: HydrateProps): void => {
+  ({ Component, classNames, rootId, helpers = {} }: HydrateProps): void => {
     const $root = document.getElementById(rootId);
 
     if ($root && $root.children.length) {
@@ -27,6 +19,7 @@ export const hydrate = (
       );
     }
 
+    const { enqueueScript: { componentDidMountQueue = [] } } = helpers;
     while (componentDidMountQueue.length) {
       componentDidMountQueue.shift()();
     }

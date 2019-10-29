@@ -14,3 +14,8 @@ export type ModifyBodyClassList = {
   addBodyClass(className: string): void;
   removeBodyClass(className: string): void;
 };
+
+export type EnqueueScript = {
+  enqueueScript(componentScript: () => void): void;
+  componentDidMountQueue: (() => void)[];
+};

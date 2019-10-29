@@ -10,16 +10,20 @@ const createComponentHelpers: Map<CreateComponentHelpers, unknown> = new Map([
     import('./helpers/control-internal-state') as unknown,
   ],
   [
+    CreateComponentHelpers.documentEventsPublisher,
+    import('./helpers/document-events-publisher') as unknown,
+  ],
+  [
+    CreateComponentHelpers.enqueueScript,
+    import('./helpers/enqueue-script') as unknown,
+  ],
+  [
     CreateComponentHelpers.modifyBodyClassList,
     import('./helpers/modify-body-class-list') as unknown,
   ],
   [
     CreateComponentHelpers.windowEventsPublisher,
     import('./helpers/window-events-publisher') as unknown,
-  ],
-  [
-    CreateComponentHelpers.documentEventsPublisher,
-    import('./helpers/document-events-publisher') as unknown,
   ],
 ]);
 
