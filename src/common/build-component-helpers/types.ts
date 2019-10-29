@@ -6,18 +6,15 @@ export const enum CreateComponentHelpers {
   documentEventsPublisher = 'documentEventsPublisher',
 }
 
-type HelperFunction = (...args: unknown[]) => unknown;
-
 export type Helpers = {
-  [CreateComponentHelpers.modifyBodyClassList]: HelperFunction;
-  [CreateComponentHelpers.controlBodyScroll]: HelperFunction;
-  [CreateComponentHelpers.windowEventsPublisher]: HelperFunction;
-  [CreateComponentHelpers.documentEventsPublisher]: HelperFunction;
-  [CreateComponentHelpers.controlInternalState]?: ControlInternalState;
+  [CreateComponentHelpers.controlBodyScroll]?:
+    import('./helpers.types').ControlBodyScroll;
+  [CreateComponentHelpers.controlInternalState]?:
+    import('./helpers.types').ControlInternalState;
+  [CreateComponentHelpers.documentEventsPublisher]?:
+    import('./helpers.types').Publisher;
+  [CreateComponentHelpers.modifyBodyClassList]?:
+    import('./helpers.types').ModifyBodyClassList;
+  [CreateComponentHelpers.windowEventsPublisher]?:
+    import('./helpers.types').Publisher;
 };
-
-export type ControlInternalState<T = 'string'> = (initialValue: T) => [
-  () => T,
-  (value: T) => void,
-];
-
