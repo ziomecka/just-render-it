@@ -1,9 +1,10 @@
-# render-it-client
-[![npm version](https://badge.fury.io/js/render-it-client.svg)](https://badge.fury.io/js/render-it-client)
+# render-it-client [![npm version](https://badge.fury.io/js/render-it-client.svg)](https://badge.fury.io/js/render-it-client)
 
 ## About
 
 Functions 'createComponent', 'hydrate', and dynamically imported, optional helpers for client side rendering.
+
+Package has been used as a simple alternative to React to code my portfolio website: [katarzyna-ziomek-zdanowicz.com](http://katarzyna-ziomek-zdanowicz.com). The relevant [repository](https://github.com/ziomecka/katarzyna-ziomek-zdanowicz) is avaliable on github.
 
 ## Installation
 
@@ -38,7 +39,7 @@ Function buildCreateComponent can be provided with object parameter with the fol
 
 Array 'options' defines which of the optional helpers should be dynamically imported:
 * controlBodyScroll,
-* controlInternalState,
+* controlInternalState (works like useState hook in React),
 * enqueueScript,
 * modifyBodyClassList,
 * windowEventsPublisher,
