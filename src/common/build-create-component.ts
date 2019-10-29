@@ -1,21 +1,14 @@
-import {
-  Helpers,
-  buildComponentHelpers,
-} from './build-component-helpers';
-import {
-  ClassNames,
-  CreateComponent,
-} from './types';
-import { CreateComponentHelpers } from './build-component-helpers/types';
+import { BuildCreateComponent } from './types';
+import { buildComponentHelpers } from './build-component-helpers';
 import { buildStyle } from './utils/build-style';
 
-export const buildCreateComponent = async (
+export const buildCreateComponent: BuildCreateComponent = async (
   {
     render,
     inject: { classNames = {} } = {},
     options = [],
-  }: BuildCreateComponentProps = { render: (): string => '' }
-): Promise<{createComponent: CreateComponent; helpers: Helpers }> => {
+  } = { render: (): string => '' }
+) => {
 
   const createComponent = ({
     componentId,
@@ -35,20 +28,10 @@ export const buildCreateComponent = async (
     });
   };
 
+  const helpers = await buildComponentHelpers(options);
+
   return {
     createComponent,
-    helpers: await buildComponentHelpers(options),
+    helpers,
   };
 };
-
-interface BuildCreateComponentProps {
-  render(props: {
-    className?: string;
-    classNames?: ClassNames;
-    style: Record<string, string | number>;
-  }): string;
-  inject?: {
-    classNames?: ClassNames;
-  };
-  options?: CreateComponentHelpers[];
-}
