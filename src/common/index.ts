@@ -1,4 +1,5 @@
 export {
+  BuildCreateComponent,
   ClassNames,
   ComponentFunction,
   ComponentProps,
