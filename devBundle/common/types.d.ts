@@ -24,7 +24,7 @@ export declare type Globals = {
     createComponent?: boolean;
     helpers?: boolean;
 };
-export declare type BuildCreateComponentProps = {
+declare type BuildCreateComponentProps = {
     render?: (props: {
         className?: string;
         classNames?: ClassNames;
@@ -38,8 +38,8 @@ export declare type BuildCreateComponentProps = {
     options?: CreateComponentHelpers[];
     globals?: Globals;
 };
-export declare type BuildCreateComponent = (props: BuildCreateComponentProps) => Promise<BuildCreateComponentResult>;
-export declare type BuildCreateComponentResult = {
+export declare type BuildCreateComponent = (props: BuildCreateComponentProps) => Promise<{
     createComponent: CreateComponent;
     helpers: Helpers;
-};
+}>;
+export {};

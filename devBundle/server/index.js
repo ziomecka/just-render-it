@@ -1438,10 +1438,9 @@ exports.buildCreateComponent = function (_a) {
       options = _d === void 0 ? [] : _d;
 
   return __awaiter(void 0, void 0, void 0, function () {
-    var fakeFunction, _e, createComponent, helpers;
-
-    return __generator(this, function (_f) {
-      switch (_f.label) {
+    var fakeFunction;
+    return __generator(this, function (_e) {
+      switch (_e.label) {
         case 0:
           fakeFunction = function fakeFunction() {};
 
@@ -1468,13 +1467,9 @@ exports.buildCreateComponent = function (_a) {
           })];
 
         case 1:
-          _e = _f.sent(), createComponent = _e.createComponent, helpers = _e.helpers;
           return [2
           /*return*/
-          , {
-            helpers: helpers,
-            createComponent: createComponent
-          }];
+          , _e.sent()];
       }
     });
   });
