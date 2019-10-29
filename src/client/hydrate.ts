@@ -25,3 +25,10 @@ export const hydrate = (
     }
   }
 );
+
+interface HydrateProps {
+  rootId: string;
+  Component: ComponentFunction;
+  classNames? : ClassNames;
+  helpers?: Helpers;
+}
