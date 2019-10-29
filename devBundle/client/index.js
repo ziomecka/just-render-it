@@ -652,8 +652,9 @@ exports.hydrate = function (_a) {
     );
   }
 
-  var _c = helpers.enqueueScript.componentDidMountQueue,
-      componentDidMountQueue = _c === void 0 ? [] : _c;
+  var _c = helpers.enqueueScript,
+      _d = (_c === void 0 ? {} : _c).componentDidMountQueue,
+      componentDidMountQueue = _d === void 0 ? [] : _d;
 
   while (componentDidMountQueue.length) {
     componentDidMountQueue.shift()();
