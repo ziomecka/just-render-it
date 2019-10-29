@@ -11,5 +11,3 @@ export const buildComponentHelpers = async (options): Promise<Helpers> => {
 
   return helpers;
 };
-
-export { Helpers };
