@@ -19,7 +19,7 @@ export const hydrate = (
       );
     }
 
-    const { enqueueScript: { componentDidMountQueue = [] } } = helpers;
+    const { enqueueScript: { componentDidMountQueue = [] } = {} } = helpers;
     while (componentDidMountQueue.length) {
       componentDidMountQueue.shift()();
     }

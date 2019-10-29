@@ -1,8 +1,6 @@
-# render-it-client
-[![npm version](https://badge.fury.io/js/render-it-client.svg)](https://badge.fury.io/js/render-it-client)
+# render-it-client [![npm version](https://badge.fury.io/js/render-it-client.svg)](https://badge.fury.io/js/render-it-client)
 
-# render-it-server
-[![npm version](https://badge.fury.io/js/render-it-server.svg)](https://badge.fury.io/js/render-it-server)
+# render-it-server [![npm version](https://badge.fury.io/js/render-it-server.svg)](https://badge.fury.io/js/render-it-server)
 
 ## About
 
@@ -11,11 +9,13 @@ Function 'hydrate' for client side rendering.
 
 Dynamically imported, optional helpers:
 * controlBodyScroll,
-* controlInternalState,
+* controlInternalState (works like useState hook in React),
 * enqueueScript,
 * modifyBodyClassList,
 * windowEventsPublisher,
 * documentEventsPublisher.
+
+Package has been used as a simple alternative to React to code my portfolio website: [katarzyna-ziomek-zdanowicz.com](http://katarzyna-ziomek-zdanowicz.com). The relevant [repository](https://github.com/ziomecka/katarzyna-ziomek-zdanowicz) is avaliable on github.
 
 ## Installation
 

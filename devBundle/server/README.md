@@ -1,9 +1,10 @@
-# render-it-server
-[![npm version](https://badge.fury.io/js/render-it-server.svg)](https://badge.fury.io/js/render-it-server)
+# render-it-server [![npm version](https://badge.fury.io/js/render-it-server.svg)](https://badge.fury.io/js/render-it-server)
 
 ## About
 
 Function 'createComponent' for server side rendering.
+
+Package has been used as a simple alternative to React to code my portfolio website: [katarzyna-ziomek-zdanowicz.com](http://katarzyna-ziomek-zdanowicz.com). The relevant [repository](https://github.com/ziomecka/katarzyna-ziomek-zdanowicz) is avaliable on github.
 
 ## Installation
 
