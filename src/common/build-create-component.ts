@@ -7,6 +7,10 @@ export const buildCreateComponent: BuildCreateComponent = async (
     render,
     inject: { classNames = {} } = {},
     options = [],
+    globals = {
+      createComponent: true,
+      helpers: false,
+    },
   } = { render: (): string => '' }
 ) => {
 
@@ -29,6 +33,9 @@ export const buildCreateComponent: BuildCreateComponent = async (
   };
 
   const helpers = await buildComponentHelpers(options);
+
+  if (globals.createComponent) global.createComponent = createComponent;
+  if (globals.helpers) global.helpers = helpers;
 
   return {
     createComponent,
