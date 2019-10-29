@@ -1,4 +1,4 @@
-export const setStateHook
+const controlInternalState
   = <T>(initialValue: T): [() => T, (value: T) => void] => {
     const state = { value: initialValue };
     return [
@@ -8,3 +8,5 @@ export const setStateHook
       },
     ];
   };
+
+export default controlInternalState;

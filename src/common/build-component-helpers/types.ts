@@ -11,7 +11,13 @@ type HelperFunction = (...args: unknown[]) => unknown;
 export type Helpers = {
   [CreateComponentHelpers.modifyBodyClassList]: HelperFunction;
   [CreateComponentHelpers.controlBodyScroll]: HelperFunction;
-  [CreateComponentHelpers.controlInternalState]: HelperFunction;
   [CreateComponentHelpers.windowEventsPublisher]: HelperFunction;
   [CreateComponentHelpers.documentEventsPublisher]: HelperFunction;
+  [CreateComponentHelpers.controlInternalState]?: ControlInternalState;
 };
+
+export type ControlInternalState<T = 'string'> = (initialValue: T) => [
+  () => T,
+  (value: T) => void,
+];
+

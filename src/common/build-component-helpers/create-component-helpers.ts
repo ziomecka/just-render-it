@@ -6,6 +6,10 @@ const createComponentHelpers: Map<CreateComponentHelpers, unknown> = new Map([
     import('./helpers/control-body-scroll') as unknown,
   ],
   [
+    CreateComponentHelpers.controlInternalState,
+    import('./helpers/control-internal-state') as unknown,
+  ],
+  [
     CreateComponentHelpers.modifyBodyClassList,
     import('./helpers/modify-body-class-list') as unknown,
   ],
