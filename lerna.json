@@ -3,7 +3,7 @@
     "devBundle/client/",
     "devBundle/server/"
   ],
-  "version": "0.0.2",
+  "version": "0.0.3",
   "command": {
     "publish": {
       "message": "chore(release): publish"
