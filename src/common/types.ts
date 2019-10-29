@@ -10,6 +10,6 @@ export type CreateComponent = (props: ComponentProps) => string;
 export type ComponentFunction<P = ComponentProps, R = string> =
   (props?: Partial<ComponentProps> & P) => R;
 
-export type ClassNames = Record<string, string>;
+export type ClassNames = { [key: string]: string };
 
 export { Helpers } from './build-component-helpers';
