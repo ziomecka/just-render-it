@@ -1,20 +1,4 @@
-export type HTMLTag = |
-'p' |
-'main' |
-'div' |
-'header' |
-'footer' |
-'nav' |
-'sidebar' |
-'custom' |
-'form' |
-'input' |
-'button' |
-'img' |
-'picture' |
-'a';
-
-export type HTMLElementProps = {};
+import { HTMLElementProps } from './html.types';
 
 export type ComponentProps = HTMLElementProps & {
   componentId?: string;

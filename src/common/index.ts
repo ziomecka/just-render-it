@@ -4,7 +4,16 @@ export {
   ComponentProps,
   CreateComponent,
   Helpers,
-  HTMLElementProps,
-  HTMLTag,
 } from './types';
+
+export {
+  HTMLAnchorElementAttributes,
+  HTMLElementAttributes,
+  HTMLElementProps,
+  HTMLInputElementAttributes,
+  HTMLInputType,
+  HTMLTextareaElementAttributes,
+  HTMLTag,
+} from './html.types';
+
 export { buildCreateComponent } from './build-create-component';
