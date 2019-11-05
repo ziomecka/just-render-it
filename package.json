@@ -13,9 +13,9 @@
   "keywords": [
   ],
   "author": {
-    "name" : "Katarzyna Ziomek-Zdanowicz",
-    "email" : "ziomecka78@gmail.com",
-    "url" : "https://katarzyna-ziomek-zdanowicz.herokuapp.com"
+    "name": "Katarzyna Ziomek-Zdanowicz",
+    "email": "ziomecka78@gmail.com",
+    "url": "https://katarzyna-ziomek-zdanowicz.herokuapp.com"
   },
   "license": "MIT",
   "homepage": "https://github.com/ziomecka/render-it#readme",
@@ -45,6 +45,7 @@
     "webpack-cli": "3.3.9"
   },
   "dependencies": {
+    "inline-style-prefixer": "5.1.0",
     "publisher-subscriber-pattern": "2.0.4",
     "rendering-recursive-client-side": "0.1.2",
     "rendering-recursive-server-side": "0.1.2"
