@@ -86,6 +86,897 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/css-in-js-utils/lib/hyphenateProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/css-in-js-utils/lib/hyphenateProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = hyphenateProperty;
+
+var _hyphenateStyleName = __webpack_require__(/*! hyphenate-style-name */ "./node_modules/hyphenate-style-name/index.js");
+
+var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function hyphenateProperty(property) {
+  return (0, _hyphenateStyleName2.default)(property);
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/css-in-js-utils/lib/isPrefixedValue.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/css-in-js-utils/lib/isPrefixedValue.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = isPrefixedValue;
+var regex = /-webkit-|-moz-|-ms-/;
+
+function isPrefixedValue(value) {
+  return typeof value === 'string' && regex.test(value);
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/hyphenate-style-name/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/hyphenate-style-name/index.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* eslint-disable no-var, prefer-template */
+var uppercasePattern = /[A-Z]/g
+var msPattern = /^ms-/
+var cache = {}
+
+function toHyphenLower(match) {
+  return '-' + match.toLowerCase()
+}
+
+function hyphenateStyleName(name) {
+  if (cache.hasOwnProperty(name)) {
+    return cache[name]
+  }
+
+  var hName = name.replace(uppercasePattern, toHyphenLower)
+  return (cache[name] = msPattern.test(hName) ? '-' + hName : hName)
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (hyphenateStyleName);
+
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/createPrefixer.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/createPrefixer.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return createPrefixer; });
+/* harmony import */ var _utils_prefixProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/prefixProperty */ "./node_modules/inline-style-prefixer/es/utils/prefixProperty.js");
+/* harmony import */ var _utils_prefixValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/prefixValue */ "./node_modules/inline-style-prefixer/es/utils/prefixValue.js");
+/* harmony import */ var _utils_addNewValuesOnly__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/addNewValuesOnly */ "./node_modules/inline-style-prefixer/es/utils/addNewValuesOnly.js");
+/* harmony import */ var _utils_isObject__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/isObject */ "./node_modules/inline-style-prefixer/es/utils/isObject.js");
+
+
+
+
+
+
+function createPrefixer(_ref) {
+  var prefixMap = _ref.prefixMap,
+      plugins = _ref.plugins;
+
+  return function prefix(style) {
+    for (var property in style) {
+      var value = style[property];
+
+      // handle nested objects
+      if (Object(_utils_isObject__WEBPACK_IMPORTED_MODULE_3__["default"])(value)) {
+        style[property] = prefix(value);
+        // handle array values
+      } else if (Array.isArray(value)) {
+        var combinedValue = [];
+
+        for (var i = 0, len = value.length; i < len; ++i) {
+          var processedValue = Object(_utils_prefixValue__WEBPACK_IMPORTED_MODULE_1__["default"])(plugins, property, value[i], style, prefixMap);
+          Object(_utils_addNewValuesOnly__WEBPACK_IMPORTED_MODULE_2__["default"])(combinedValue, processedValue || value[i]);
+        }
+
+        // only modify the value if it was touched
+        // by any plugin to prevent unnecessary mutations
+        if (combinedValue.length > 0) {
+          style[property] = combinedValue;
+        }
+      } else {
+        var _processedValue = Object(_utils_prefixValue__WEBPACK_IMPORTED_MODULE_1__["default"])(plugins, property, value, style, prefixMap);
+
+        // only modify the value if it was touched
+        // by any plugin to prevent unnecessary mutations
+        if (_processedValue) {
+          style[property] = _processedValue;
+        }
+
+        style = Object(_utils_prefixProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(prefixMap, property, style);
+      }
+    }
+
+    return style;
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/data.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/data.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+var w = ["Webkit"];
+var m = ["Moz"];
+var ms = ["ms"];
+var wm = ["Webkit", "Moz"];
+var wms = ["Webkit", "ms"];
+var wmms = ["Webkit", "Moz", "ms"];
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  plugins: [],
+  prefixMap: { "appearance": wm, "textEmphasisPosition": w, "textEmphasis": w, "textEmphasisStyle": w, "textEmphasisColor": w, "boxDecorationBreak": w, "maskImage": w, "maskMode": w, "maskRepeat": w, "maskPosition": w, "maskClip": w, "maskOrigin": w, "maskSize": w, "maskComposite": w, "mask": w, "maskBorderSource": w, "maskBorderMode": w, "maskBorderSlice": w, "maskBorderWidth": w, "maskBorderOutset": w, "maskBorderRepeat": w, "maskBorder": w, "maskType": w, "textDecorationStyle": w, "textDecorationSkip": w, "textDecorationLine": w, "textDecorationColor": w, "userSelect": wmms, "backdropFilter": w, "fontKerning": w, "scrollSnapType": wms, "scrollSnapPointsX": wms, "scrollSnapPointsY": wms, "scrollSnapDestination": wms, "scrollSnapCoordinate": wms, "clipPath": w, "shapeImageThreshold": w, "shapeImageMargin": w, "shapeImageOutside": w, "filter": w, "hyphens": wms, "flowInto": wms, "flowFrom": wms, "breakBefore": wms, "breakAfter": wms, "breakInside": wms, "regionFragment": wms, "writingMode": wms, "textOrientation": w, "tabSize": m, "fontFeatureSettings": w, "columnCount": w, "columnFill": w, "columnGap": w, "columnRule": w, "columnRuleColor": w, "columnRuleStyle": w, "columnRuleWidth": w, "columns": w, "columnSpan": w, "columnWidth": w, "wrapFlow": ms, "wrapThrough": ms, "wrapMargin": ms, "textSizeAdjust": wms }
+});
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/index.js ***!
+  \********************************************************/
+/*! exports provided: createPrefixer, prefix */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prefix", function() { return prefix; });
+/* harmony import */ var _createPrefixer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createPrefixer */ "./node_modules/inline-style-prefixer/es/createPrefixer.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createPrefixer", function() { return _createPrefixer__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data */ "./node_modules/inline-style-prefixer/es/data.js");
+/* harmony import */ var _plugins_backgroundClip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./plugins/backgroundClip */ "./node_modules/inline-style-prefixer/es/plugins/backgroundClip.js");
+/* harmony import */ var _plugins_cursor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plugins/cursor */ "./node_modules/inline-style-prefixer/es/plugins/cursor.js");
+/* harmony import */ var _plugins_crossFade__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./plugins/crossFade */ "./node_modules/inline-style-prefixer/es/plugins/crossFade.js");
+/* harmony import */ var _plugins_filter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./plugins/filter */ "./node_modules/inline-style-prefixer/es/plugins/filter.js");
+/* harmony import */ var _plugins_flex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./plugins/flex */ "./node_modules/inline-style-prefixer/es/plugins/flex.js");
+/* harmony import */ var _plugins_flexboxOld__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./plugins/flexboxOld */ "./node_modules/inline-style-prefixer/es/plugins/flexboxOld.js");
+/* harmony import */ var _plugins_gradient__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./plugins/gradient */ "./node_modules/inline-style-prefixer/es/plugins/gradient.js");
+/* harmony import */ var _plugins_grid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./plugins/grid */ "./node_modules/inline-style-prefixer/es/plugins/grid.js");
+/* harmony import */ var _plugins_imageSet__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./plugins/imageSet */ "./node_modules/inline-style-prefixer/es/plugins/imageSet.js");
+/* harmony import */ var _plugins_logical__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./plugins/logical */ "./node_modules/inline-style-prefixer/es/plugins/logical.js");
+/* harmony import */ var _plugins_position__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./plugins/position */ "./node_modules/inline-style-prefixer/es/plugins/position.js");
+/* harmony import */ var _plugins_sizing__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./plugins/sizing */ "./node_modules/inline-style-prefixer/es/plugins/sizing.js");
+/* harmony import */ var _plugins_transition__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./plugins/transition */ "./node_modules/inline-style-prefixer/es/plugins/transition.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var plugins = [_plugins_backgroundClip__WEBPACK_IMPORTED_MODULE_2__["default"], _plugins_crossFade__WEBPACK_IMPORTED_MODULE_4__["default"], _plugins_cursor__WEBPACK_IMPORTED_MODULE_3__["default"], _plugins_filter__WEBPACK_IMPORTED_MODULE_5__["default"], _plugins_flexboxOld__WEBPACK_IMPORTED_MODULE_7__["default"], _plugins_gradient__WEBPACK_IMPORTED_MODULE_8__["default"], _plugins_grid__WEBPACK_IMPORTED_MODULE_9__["default"], _plugins_imageSet__WEBPACK_IMPORTED_MODULE_10__["default"], _plugins_logical__WEBPACK_IMPORTED_MODULE_11__["default"], _plugins_position__WEBPACK_IMPORTED_MODULE_12__["default"], _plugins_sizing__WEBPACK_IMPORTED_MODULE_13__["default"], _plugins_transition__WEBPACK_IMPORTED_MODULE_14__["default"], _plugins_flex__WEBPACK_IMPORTED_MODULE_6__["default"]];
+
+var prefix = Object(_createPrefixer__WEBPACK_IMPORTED_MODULE_0__["default"])({
+  prefixMap: _data__WEBPACK_IMPORTED_MODULE_1__["default"].prefixMap,
+  plugins: plugins
+});
+
+
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/backgroundClip.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/backgroundClip.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return backgroundClip; });
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip#Browser_compatibility
+function backgroundClip(property, value) {
+  if (typeof value === 'string' && value === 'text') {
+    return ['-webkit-text', 'text'];
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/crossFade.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/crossFade.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return crossFade; });
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! css-in-js-utils/lib/isPrefixedValue */ "./node_modules/css-in-js-utils/lib/isPrefixedValue.js");
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0__);
+
+
+// http://caniuse.com/#search=cross-fade
+var prefixes = ['-webkit-', ''];
+
+function crossFade(property, value) {
+  if (typeof value === 'string' && !css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0___default()(value) && value.indexOf('cross-fade(') > -1) {
+    return prefixes.map(function (prefix) {
+      return value.replace(/cross-fade\(/g, prefix + 'cross-fade(');
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/cursor.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/cursor.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return cursor; });
+var prefixes = ['-webkit-', '-moz-', ''];
+
+var values = {
+  'zoom-in': true,
+  'zoom-out': true,
+  grab: true,
+  grabbing: true
+};
+
+function cursor(property, value) {
+  if (property === 'cursor' && values.hasOwnProperty(value)) {
+    return prefixes.map(function (prefix) {
+      return prefix + value;
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/filter.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/filter.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return filter; });
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! css-in-js-utils/lib/isPrefixedValue */ "./node_modules/css-in-js-utils/lib/isPrefixedValue.js");
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0__);
+
+
+// http://caniuse.com/#feat=css-filter-function
+var prefixes = ['-webkit-', ''];
+
+function filter(property, value) {
+  if (typeof value === 'string' && !css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0___default()(value) && value.indexOf('filter(') > -1) {
+    return prefixes.map(function (prefix) {
+      return value.replace(/filter\(/g, prefix + 'filter(');
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/flex.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/flex.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return flex; });
+var values = {
+  flex: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
+  'inline-flex': ['-webkit-inline-box', '-moz-inline-box', '-ms-inline-flexbox', '-webkit-inline-flex', 'inline-flex']
+};
+
+function flex(property, value) {
+  if (property === 'display' && values.hasOwnProperty(value)) {
+    return values[value];
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/flexboxOld.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/flexboxOld.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return flexboxOld; });
+var alternativeValues = {
+  'space-around': 'justify',
+  'space-between': 'justify',
+  'flex-start': 'start',
+  'flex-end': 'end',
+  'wrap-reverse': 'multiple',
+  wrap: 'multiple'
+};
+
+var alternativeProps = {
+  alignItems: 'WebkitBoxAlign',
+  justifyContent: 'WebkitBoxPack',
+  flexWrap: 'WebkitBoxLines',
+  flexGrow: 'WebkitBoxFlex'
+};
+
+function flexboxOld(property, value, style) {
+  if (property === 'flexDirection' && typeof value === 'string') {
+    if (value.indexOf('column') > -1) {
+      style.WebkitBoxOrient = 'vertical';
+    } else {
+      style.WebkitBoxOrient = 'horizontal';
+    }
+    if (value.indexOf('reverse') > -1) {
+      style.WebkitBoxDirection = 'reverse';
+    } else {
+      style.WebkitBoxDirection = 'normal';
+    }
+  }
+  if (alternativeProps.hasOwnProperty(property)) {
+    style[alternativeProps[property]] = alternativeValues[value] || value;
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/gradient.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/gradient.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return gradient; });
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! css-in-js-utils/lib/isPrefixedValue */ "./node_modules/css-in-js-utils/lib/isPrefixedValue.js");
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var prefixes = ['-webkit-', '-moz-', ''];
+var values = /linear-gradient|radial-gradient|repeating-linear-gradient|repeating-radial-gradient/gi;
+
+function gradient(property, value) {
+  if (typeof value === 'string' && !css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0___default()(value) && values.test(value)) {
+    return prefixes.map(function (prefix) {
+      return value.replace(values, function (grad) {
+        return prefix + grad;
+      });
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/grid.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/grid.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return grid; });
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function isSimplePositionValue(value) {
+  return typeof value === 'number' && !isNaN(value);
+}
+
+var alignmentValues = ['center', 'end', 'start', 'stretch'];
+
+var displayValues = {
+  'inline-grid': ['-ms-inline-grid', 'inline-grid'],
+  grid: ['-ms-grid', 'grid']
+};
+
+var propertyConverters = {
+  alignSelf: function alignSelf(value, style) {
+    if (alignmentValues.indexOf(value) > -1) {
+      style.msGridRowAlign = value;
+    }
+  },
+
+  gridColumn: function gridColumn(value, style) {
+    if (isSimplePositionValue(value)) {
+      style.msGridColumn = value;
+    } else {
+      var _value$split$map = value.split('/').map(function (position) {
+        return +position;
+      }),
+          _value$split$map2 = _slicedToArray(_value$split$map, 2),
+          start = _value$split$map2[0],
+          end = _value$split$map2[1];
+
+      propertyConverters.gridColumnStart(start, style);
+      propertyConverters.gridColumnEnd(end, style);
+    }
+  },
+
+  gridColumnEnd: function gridColumnEnd(value, style) {
+    var msGridColumn = style.msGridColumn;
+
+    if (isSimplePositionValue(value) && isSimplePositionValue(msGridColumn)) {
+      style.msGridColumnSpan = value - msGridColumn;
+    }
+  },
+
+  gridColumnStart: function gridColumnStart(value, style) {
+    if (isSimplePositionValue(value)) {
+      style.msGridColumn = value;
+    }
+  },
+
+  gridRow: function gridRow(value, style) {
+    if (isSimplePositionValue(value)) {
+      style.msGridRow = value;
+    } else {
+      var _value$split$map3 = value.split('/').map(function (position) {
+        return +position;
+      }),
+          _value$split$map4 = _slicedToArray(_value$split$map3, 2),
+          start = _value$split$map4[0],
+          end = _value$split$map4[1];
+
+      propertyConverters.gridRowStart(start, style);
+      propertyConverters.gridRowEnd(end, style);
+    }
+  },
+
+  gridRowEnd: function gridRowEnd(value, style) {
+    var msGridRow = style.msGridRow;
+
+    if (isSimplePositionValue(value) && isSimplePositionValue(msGridRow)) {
+      style.msGridRowSpan = value - msGridRow;
+    }
+  },
+
+  gridRowStart: function gridRowStart(value, style) {
+    if (isSimplePositionValue(value)) {
+      style.msGridRow = value;
+    }
+  },
+
+  gridTemplateColumns: function gridTemplateColumns(value, style) {
+    style.msGridColumns = value;
+  },
+
+  gridTemplateRows: function gridTemplateRows(value, style) {
+    style.msGridRows = value;
+  },
+
+  justifySelf: function justifySelf(value, style) {
+    if (alignmentValues.indexOf(value) > -1) {
+      style.msGridColumnAlign = value;
+    }
+  }
+};
+
+function grid(property, value, style) {
+  if (property === 'display' && value in displayValues) {
+    return displayValues[value];
+  }
+
+  if (property in propertyConverters) {
+    var propertyConverter = propertyConverters[property];
+    propertyConverter(value, style);
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/imageSet.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/imageSet.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return imageSet; });
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! css-in-js-utils/lib/isPrefixedValue */ "./node_modules/css-in-js-utils/lib/isPrefixedValue.js");
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0__);
+
+
+// http://caniuse.com/#feat=css-image-set
+var prefixes = ['-webkit-', ''];
+
+function imageSet(property, value) {
+  if (typeof value === 'string' && !css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_0___default()(value) && value.indexOf('image-set(') > -1) {
+    return prefixes.map(function (prefix) {
+      return value.replace(/image-set\(/g, prefix + 'image-set(');
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/logical.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/logical.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return logical; });
+var alternativeProps = {
+  marginBlockStart: ['WebkitMarginBefore'],
+  marginBlockEnd: ['WebkitMarginAfter'],
+  marginInlineStart: ['WebkitMarginStart', 'MozMarginStart'],
+  marginInlineEnd: ['WebkitMarginEnd', 'MozMarginEnd'],
+  paddingBlockStart: ['WebkitPaddingBefore'],
+  paddingBlockEnd: ['WebkitPaddingAfter'],
+  paddingInlineStart: ['WebkitPaddingStart', 'MozPaddingStart'],
+  paddingInlineEnd: ['WebkitPaddingEnd', 'MozPaddingEnd'],
+  borderBlockStart: ['WebkitBorderBefore'],
+  borderBlockStartColor: ['WebkitBorderBeforeColor'],
+  borderBlockStartStyle: ['WebkitBorderBeforeStyle'],
+  borderBlockStartWidth: ['WebkitBorderBeforeWidth'],
+  borderBlockEnd: ['WebkitBorderAfter'],
+  borderBlockEndColor: ['WebkitBorderAfterColor'],
+  borderBlockEndStyle: ['WebkitBorderAfterStyle'],
+  borderBlockEndWidth: ['WebkitBorderAfterWidth'],
+  borderInlineStart: ['WebkitBorderStart', 'MozBorderStart'],
+  borderInlineStartColor: ['WebkitBorderStartColor', 'MozBorderStartColor'],
+  borderInlineStartStyle: ['WebkitBorderStartStyle', 'MozBorderStartStyle'],
+  borderInlineStartWidth: ['WebkitBorderStartWidth', 'MozBorderStartWidth'],
+  borderInlineEnd: ['WebkitBorderEnd', 'MozBorderEnd'],
+  borderInlineEndColor: ['WebkitBorderEndColor', 'MozBorderEndColor'],
+  borderInlineEndStyle: ['WebkitBorderEndStyle', 'MozBorderEndStyle'],
+  borderInlineEndWidth: ['WebkitBorderEndWidth', 'MozBorderEndWidth']
+};
+
+function logical(property, value, style) {
+  if (Object.prototype.hasOwnProperty.call(alternativeProps, property)) {
+    var alternativePropList = alternativeProps[property];
+    for (var i = 0, len = alternativePropList.length; i < len; ++i) {
+      style[alternativePropList[i]] = value;
+    }
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/position.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/position.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return position; });
+function position(property, value) {
+  if (property === 'position' && value === 'sticky') {
+    return ['-webkit-sticky', 'sticky'];
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/sizing.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/sizing.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return sizing; });
+var prefixes = ['-webkit-', '-moz-', ''];
+
+var properties = {
+  maxHeight: true,
+  maxWidth: true,
+  width: true,
+  height: true,
+  columnWidth: true,
+  minWidth: true,
+  minHeight: true
+};
+var values = {
+  'min-content': true,
+  'max-content': true,
+  'fill-available': true,
+  'fit-content': true,
+  'contain-floats': true
+};
+
+function sizing(property, value) {
+  if (properties.hasOwnProperty(property) && values.hasOwnProperty(value)) {
+    return prefixes.map(function (prefix) {
+      return prefix + value;
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/plugins/transition.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/plugins/transition.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return transition; });
+/* harmony import */ var css_in_js_utils_lib_hyphenateProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! css-in-js-utils/lib/hyphenateProperty */ "./node_modules/css-in-js-utils/lib/hyphenateProperty.js");
+/* harmony import */ var css_in_js_utils_lib_hyphenateProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(css_in_js_utils_lib_hyphenateProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! css-in-js-utils/lib/isPrefixedValue */ "./node_modules/css-in-js-utils/lib/isPrefixedValue.js");
+/* harmony import */ var css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_capitalizeString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/capitalizeString */ "./node_modules/inline-style-prefixer/es/utils/capitalizeString.js");
+
+
+
+
+
+var properties = {
+  transition: true,
+  transitionProperty: true,
+  WebkitTransition: true,
+  WebkitTransitionProperty: true,
+  MozTransition: true,
+  MozTransitionProperty: true
+};
+
+var prefixMapping = {
+  Webkit: '-webkit-',
+  Moz: '-moz-',
+  ms: '-ms-'
+};
+
+function prefixValue(value, propertyPrefixMap) {
+  if (css_in_js_utils_lib_isPrefixedValue__WEBPACK_IMPORTED_MODULE_1___default()(value)) {
+    return value;
+  }
+
+  // only split multi values, not cubic beziers
+  var multipleValues = value.split(/,(?![^()]*(?:\([^()]*\))?\))/g);
+
+  for (var i = 0, len = multipleValues.length; i < len; ++i) {
+    var singleValue = multipleValues[i];
+    var values = [singleValue];
+    for (var property in propertyPrefixMap) {
+      var dashCaseProperty = css_in_js_utils_lib_hyphenateProperty__WEBPACK_IMPORTED_MODULE_0___default()(property);
+
+      if (singleValue.indexOf(dashCaseProperty) > -1 && dashCaseProperty !== 'order') {
+        var prefixes = propertyPrefixMap[property];
+        for (var j = 0, pLen = prefixes.length; j < pLen; ++j) {
+          // join all prefixes and create a new value
+          values.unshift(singleValue.replace(dashCaseProperty, prefixMapping[prefixes[j]] + dashCaseProperty));
+        }
+      }
+    }
+
+    multipleValues[i] = values.join(',');
+  }
+
+  return multipleValues.join(',');
+}
+
+function transition(property, value, style, propertyPrefixMap) {
+  // also check for already prefixed transitions
+  if (typeof value === 'string' && properties.hasOwnProperty(property)) {
+    var outputValue = prefixValue(value, propertyPrefixMap);
+    // if the property is already prefixed
+    var webkitOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (val) {
+      return !/-moz-|-ms-/.test(val);
+    }).join(',');
+
+    if (property.indexOf('Webkit') > -1) {
+      return webkitOutput;
+    }
+
+    var mozOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (val) {
+      return !/-webkit-|-ms-/.test(val);
+    }).join(',');
+
+    if (property.indexOf('Moz') > -1) {
+      return mozOutput;
+    }
+
+    style['Webkit' + Object(_utils_capitalizeString__WEBPACK_IMPORTED_MODULE_2__["default"])(property)] = webkitOutput;
+    style['Moz' + Object(_utils_capitalizeString__WEBPACK_IMPORTED_MODULE_2__["default"])(property)] = mozOutput;
+    return outputValue;
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/utils/addNewValuesOnly.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/utils/addNewValuesOnly.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return addNewValuesOnly; });
+function addIfNew(list, value) {
+  if (list.indexOf(value) === -1) {
+    list.push(value);
+  }
+}
+
+function addNewValuesOnly(list, values) {
+  if (Array.isArray(values)) {
+    for (var i = 0, len = values.length; i < len; ++i) {
+      addIfNew(list, values[i]);
+    }
+  } else {
+    addIfNew(list, values);
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/utils/capitalizeString.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/utils/capitalizeString.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return capitalizeString; });
+function capitalizeString(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/utils/isObject.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/utils/isObject.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isObject; });
+function isObject(value) {
+  return value instanceof Object && !Array.isArray(value);
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/utils/prefixProperty.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/utils/prefixProperty.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return prefixProperty; });
+/* harmony import */ var _capitalizeString__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./capitalizeString */ "./node_modules/inline-style-prefixer/es/utils/capitalizeString.js");
+
+
+
+function prefixProperty(prefixProperties, property, style) {
+  if (prefixProperties.hasOwnProperty(property)) {
+    var newStyle = {};
+    var requiredPrefixes = prefixProperties[property];
+    var capitalizedProperty = Object(_capitalizeString__WEBPACK_IMPORTED_MODULE_0__["default"])(property);
+    var keys = Object.keys(style);
+    for (var i = 0; i < keys.length; i++) {
+      var styleProperty = keys[i];
+      if (styleProperty === property) {
+        for (var j = 0; j < requiredPrefixes.length; j++) {
+          newStyle[requiredPrefixes[j] + capitalizedProperty] = style[property];
+        }
+      }
+      newStyle[styleProperty] = style[styleProperty];
+    }
+    return newStyle;
+  }
+  return style;
+}
+
+/***/ }),
+
+/***/ "./node_modules/inline-style-prefixer/es/utils/prefixValue.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/inline-style-prefixer/es/utils/prefixValue.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return prefixValue; });
+function prefixValue(plugins, property, value, style, metaData) {
+  for (var i = 0, len = plugins.length; i < len; ++i) {
+    var processedValue = plugins[i](property, value, style, metaData);
+
+    // we can stop processing if a value is returned
+    // as all plugin criteria are unique
+    if (processedValue) {
+      return processedValue;
+    }
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/publisher-subscriber-pattern/dist/_types.js":
 /*!******************************************************************!*\
   !*** ./node_modules/publisher-subscriber-pattern/dist/_types.js ***!
@@ -652,8 +1543,9 @@ exports.hydrate = function (_a) {
     );
   }
 
-  var _c = helpers.enqueueScript.componentDidMountQueue,
-      componentDidMountQueue = _c === void 0 ? [] : _c;
+  var _c = helpers.enqueueScript,
+      _d = (_c === void 0 ? {} : _c).componentDidMountQueue,
+      componentDidMountQueue = _d === void 0 ? [] : _d;
 
   while (componentDidMountQueue.length) {
     componentDidMountQueue.shift()();
@@ -1557,10 +2449,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var inline_style_prefixer_1 = __webpack_require__(/*! inline-style-prefixer */ "./node_modules/inline-style-prefixer/es/index.js");
+
 exports.buildStyle = function (style, flex) {
-  return flex ? __assign(__assign(__assign({}, style), {
+  return flex ? __assign(__assign(__assign({
     display: 'flex'
-  }), flex) : style;
+  }, inline_style_prefixer_1.prefix(__assign(__assign({}, flex), style))), flex), style) : __assign(__assign({}, inline_style_prefixer_1.prefix(style)), style);
 };
 
 /***/ })
