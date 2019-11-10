@@ -12,3 +12,4 @@
 
 # @0.1.4 [author: Katarzyna Ziomek-Zdanowicz, date: 2019.11.10]
 * Modifies buildStyle utility, so the prefixed css properties are not overwritten
+* Upgrades rendering-recursive packages to 0.1.5
