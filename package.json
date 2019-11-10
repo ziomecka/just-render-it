@@ -10,8 +10,7 @@
     "webpack:dev": "./set-env-vars.sh development && npm run webpack",
     "test": "mocha -r ts-node/register src/**/*spec.js"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": {
     "name": "Katarzyna Ziomek-Zdanowicz",
     "email": "ziomecka78@gmail.com",
@@ -47,8 +46,8 @@
   "dependencies": {
     "inline-style-prefixer": "5.1.0",
     "publisher-subscriber-pattern": "2.0.4",
-    "rendering-recursive-client-side": "0.1.4",
-    "rendering-recursive-server-side": "0.1.4"
+    "rendering-recursive-client-side": "0.1.5",
+    "rendering-recursive-server-side": "0.1.5"
   },
   "engines": {
     "node": "12.11.1",
