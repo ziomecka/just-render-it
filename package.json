@@ -47,8 +47,8 @@
   "dependencies": {
     "inline-style-prefixer": "5.1.0",
     "publisher-subscriber-pattern": "2.0.4",
-    "rendering-recursive-client-side": "0.1.3",
-    "rendering-recursive-server-side": "0.1.3"
+    "rendering-recursive-client-side": "0.1.4",
+    "rendering-recursive-server-side": "0.1.4"
   },
   "engines": {
     "node": "12.11.1",
