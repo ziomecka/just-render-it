@@ -4,13 +4,13 @@ export const buildStyle = (style: CSSProperties, flex: Flex): CSSProperties => {
   return flex
     ? {
       display: 'flex',
-      ...prefix({ ...flex, ...style }),
       ...flex,
       ...style,
+      ...prefix({ ...flex, ...style }),
     }
     : {
-      ...prefix(style),
       ...style,
+      ...prefix(style),
     };
 };
 
