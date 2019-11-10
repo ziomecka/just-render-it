@@ -3589,17 +3589,10 @@ var buildAppendChild = function buildAppendChild(document, createElement) {
 
       if (isString) {
         var isSvg = is_svg_1.isSvg($child);
-        console.log('dupa1');
 
         if (isSvg) {
           if ($element) {
-            $element.innerHTML = new DOMParser().parseFromString($child).toString(); // $element.append(
-            //   new DOMParser()
-            //     .parseFromString($child)
-            //     .toString()
-            // );
-
-            console.log('dupa2', $element.innerHTML); // console.log('dupa');
+            $element.innerHTML = new DOMParser().parseFromString($child).toString();
           } else {
             console.warn('SVG element can be child only of HTMLElement'); // eslint-disable-line
           }
@@ -3642,6 +3635,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var resolve_array_1 = __webpack_require__(/*! ../utils/resolve-array */ "./src/common/utils/resolve-array.ts");
+
 var buildCreateHTMLElement = function buildCreateHTMLElement(document, useCaptureDefault) {
   if (useCaptureDefault === void 0) {
     useCaptureDefault = true;
@@ -3672,7 +3667,8 @@ var buildCreateHTMLElement = function buildCreateHTMLElement(document, useCaptur
     });
     if (innerHTML) $element.innerHTML = innerHTML;
     Object.keys(style).forEach(function (key) {
-      $element.style[key] = style[key];
+      var value = style[key];
+      $element.style[key] = !Array.isArray(value) ? value : resolve_array_1.resolveArray(key, value);
     });
     Object.keys(attributes).forEach(function (key) {
       $element.setAttribute(key, attributes[key]);
@@ -3770,6 +3766,10 @@ var builders_1 = __webpack_require__(/*! ./builders/ */ "./src/common/builders/i
 
 exports.buildRender = builders_1.buildRender;
 
+var resolve_array_1 = __webpack_require__(/*! ./utils/resolve-array */ "./src/common/utils/resolve-array.ts");
+
+exports.resolveArray = resolve_array_1.resolveArray;
+
 /***/ }),
 
 /***/ "./src/common/utils/is-svg.js":
@@ -3786,6 +3786,26 @@ exports.isSvg = function (str) {
     return /^<svg[\w\s:.;&/"-=<>\\]*<\/svg>$/.test(str);
 };
 
+
+/***/ }),
+
+/***/ "./src/common/utils/resolve-array.ts":
+/*!*******************************************!*\
+  !*** ./src/common/utils/resolve-array.ts ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.resolveArray = function (property, arr) {
+  return arr.join("; " + property + ":");
+};
 
 /***/ }),
 
@@ -3848,6 +3868,8 @@ exports.SSRDocument = SSRDocument;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var common_1 = __webpack_require__(/*! ../common/ */ "./src/common/index.ts");
 
 var ClassList =
 /** @class */
@@ -3952,7 +3974,8 @@ function () {
 
 
       var style = JSON.stringify(Object.keys(this.style).reduce(function (newStyleObj, cssProperty) {
-        newStyleObj[cssProperty.split(/(?=[A-Z])/).join('-').toLowerCase()] = _this.style[cssProperty];
+        var value = _this.style[cssProperty];
+        newStyleObj[cssProperty.split(/(?=[A-Z])/).join('-').toLowerCase()] = !Array.isArray(value) ? value : common_1.resolveArray(cssProperty, value);
         return newStyleObj;
       }, {}));
       style = style.substring(1, style.length - 1).replace(/["']/gi, '').replace(/[,]/gi, '; ').replace(/\swebkit-/gi, ' -webkit-').replace(/\sms-/gi, ' -ms-').replace(/\smoz-/gi, ' -moz-').replace(/\so-/gi, ' -o-');
@@ -4980,7 +5003,7 @@ var inline_style_prefixer_1 = __webpack_require__(/*! inline-style-prefixer */ "
 exports.buildStyle = function (style, flex) {
   return flex ? __assign(__assign(__assign({
     display: 'flex'
-  }, inline_style_prefixer_1.prefix(__assign(__assign({}, flex), style))), flex), style) : __assign(__assign({}, inline_style_prefixer_1.prefix(style)), style);
+  }, flex), style), inline_style_prefixer_1.prefix(__assign(__assign({}, flex), style))) : __assign(__assign({}, style), inline_style_prefixer_1.prefix(style));
 };
 
 /***/ }),
