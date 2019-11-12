@@ -4412,7 +4412,7 @@ var publisherScript = function publisherScript() {
 
 exports["default"] = function () {
   return publisherScript();
-};
+}();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -4497,7 +4497,7 @@ var publisherScript = function publisherScript() {
 
 exports["default"] = function () {
   return publisherScript();
-};
+}();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
