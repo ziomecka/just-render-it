@@ -3,15 +3,15 @@ import { Publisher } from 'publisher-subscriber-pattern';
 
 export let publisher: Publisher;
 
-const publisherScript = (): void => {
+const publisherScript = (): Publisher => {
   publisher = new Publisher(
     // @ts-ignore
     global.window ?  global.window.document : window.document,
     'addEventListener',
     'removeEventListener',
   );
+
+  return publisher;
 };
 
-publisherScript();
-
-export default publisher;
+export default () => publisherScript();
