@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { buildStyle } from './build-style';
-describe.only('build style', () => {
+
+describe('build style', () => {
   it('prefixes style', () => {
     const scenario = {
       display: 'flex',
