@@ -4271,14 +4271,17 @@ exports.default = controlInternalState;
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 var publisher_subscriber_pattern_1 = __webpack_require__(/*! publisher-subscriber-pattern */ "./node_modules/publisher-subscriber-pattern/dist/index.js");
-var publisherScript = function () {
-    exports.publisher = new publisher_subscriber_pattern_1.Publisher(
-    // @ts-ignore
-    global.window ? global.window.document : window.document, 'addEventListener', 'removeEventListener');
-    return exports.publisher;
+
+var publisherScript = function publisherScript() {
+  exports.publisher = new publisher_subscriber_pattern_1.Publisher( // @ts-ignore
+  global.window ? global.window.document : window.document, 'addEventListener', 'removeEventListener');
+  return exports.publisher;
 };
 exports.default = (function () { return publisherScript(); });
 
+exports["default"] = function () {
+  return publisherScript();
+};
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -4341,14 +4344,17 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 var publisher_subscriber_pattern_1 = __webpack_require__(/*! publisher-subscriber-pattern */ "./node_modules/publisher-subscriber-pattern/dist/index.js");
-var publisherScript = function () {
-    exports.publisher = new publisher_subscriber_pattern_1.Publisher(
-    // @ts-ignore
-    global.window || window, 'addEventListener', 'removeEventListener');
-    return exports.publisher;
+
+var publisherScript = function publisherScript() {
+  exports.publisher = new publisher_subscriber_pattern_1.Publisher( // @ts-ignore
+  global.window || window, 'addEventListener', 'removeEventListener');
+  return exports.publisher;
 };
 exports.default = (function () { return publisherScript(); });
 
+exports["default"] = function () {
+  return publisherScript();
+};
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
