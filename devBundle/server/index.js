@@ -4127,884 +4127,455 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./src/common/build-component-helpers/create-component-helpers.ts":
+/***/ "./src/common/build-component-helpers/create-component-helpers.js":
 /*!************************************************************************!*\
-  !*** ./src/common/build-component-helpers/create-component-helpers.ts ***!
+  !*** ./src/common/build-component-helpers/create-component-helpers.js ***!
   \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-  }
-
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
-
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
 };
-
-var __generator = this && this.__generator || function (thisArg, body) {
-  var _ = {
-    label: 0,
-    sent: function sent() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    },
-    trys: [],
-    ops: []
-  },
-      f,
-      y,
-      t,
-      g;
-  return g = {
-    next: verb(0),
-    "throw": verb(1),
-    "return": verb(2)
-  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
-    };
-  }
-
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
-
-        switch (op[0]) {
-          case 0:
-          case 1:
-            t = op;
-            break;
-
-          case 4:
-            _.label++;
-            return {
-              value: op[1],
-              done: false
-            };
-
-          case 5:
-            _.label++;
-            y = op[1];
-            op = [0];
-            continue;
-
-          case 7:
-            op = _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0;
-              continue;
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
             }
-
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-              _.label = op[1];
-              break;
-            }
-
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
-              break;
-            }
-
-            if (t && _.label < t[2]) {
-              _.label = t[2];
-
-              _.ops.push(op);
-
-              break;
-            }
-
-            if (t[2]) _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-        }
-
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e];
-        y = 0;
-      } finally {
-        f = t = 0;
-      }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-
-    if (op[0] & 5) throw op[1];
-    return {
-      value: op[0] ? op[1] : void 0,
-      done: true
-    };
-  }
 };
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var createComponentHelpers = new Map([["controlBodyScroll"
-/* controlBodyScroll */
-, Promise.resolve().then(function () {
-  return __webpack_require__(/*! ./helpers/control-body-scroll */ "./src/common/build-component-helpers/helpers/control-body-scroll.ts");
-})], ["controlInternalState"
-/* controlInternalState */
-, Promise.resolve().then(function () {
-  return __webpack_require__(/*! ./helpers/control-internal-state */ "./src/common/build-component-helpers/helpers/control-internal-state.ts");
-})], ["documentEventsPublisher"
-/* documentEventsPublisher */
-, Promise.resolve().then(function () {
-  return __webpack_require__(/*! ./helpers/document-events-publisher */ "./src/common/build-component-helpers/helpers/document-events-publisher.ts");
-})], ["enqueueScript"
-/* enqueueScript */
-, Promise.resolve().then(function () {
-  return __webpack_require__(/*! ./helpers/enqueue-script */ "./src/common/build-component-helpers/helpers/enqueue-script.ts");
-})], ["modifyBodyClassList"
-/* modifyBodyClassList */
-, Promise.resolve().then(function () {
-  return __webpack_require__(/*! ./helpers/modify-body-class-list */ "./src/common/build-component-helpers/helpers/modify-body-class-list.ts");
-})], ["windowEventsPublisher"
-/* windowEventsPublisher */
-, Promise.resolve().then(function () {
-  return __webpack_require__(/*! ./helpers/window-events-publisher */ "./src/common/build-component-helpers/helpers/window-events-publisher.ts");
-})]]);
-
-exports.getCreateComponentHelper = function (value) {
-  return __awaiter(void 0, void 0, void 0, function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var createComponentHelpers = new Map([
+    [
+        "controlBodyScroll" /* controlBodyScroll */,
+        Promise.resolve().then(function () { return __webpack_require__(/*! ./helpers/control-body-scroll */ "./src/common/build-component-helpers/helpers/control-body-scroll.js"); }),
+    ],
+    [
+        "controlInternalState" /* controlInternalState */,
+        Promise.resolve().then(function () { return __webpack_require__(/*! ./helpers/control-internal-state */ "./src/common/build-component-helpers/helpers/control-internal-state.js"); }),
+    ],
+    [
+        "documentEventsPublisher" /* documentEventsPublisher */,
+        Promise.resolve().then(function () { return __webpack_require__(/*! ./helpers/document-events-publisher */ "./src/common/build-component-helpers/helpers/document-events-publisher.js"); }),
+    ],
+    [
+        "enqueueScript" /* enqueueScript */,
+        Promise.resolve().then(function () { return __webpack_require__(/*! ./helpers/enqueue-script */ "./src/common/build-component-helpers/helpers/enqueue-script.js"); }),
+    ],
+    [
+        "modifyBodyClassList" /* modifyBodyClassList */,
+        Promise.resolve().then(function () { return __webpack_require__(/*! ./helpers/modify-body-class-list */ "./src/common/build-component-helpers/helpers/modify-body-class-list.js"); }),
+    ],
+    [
+        "windowEventsPublisher" /* windowEventsPublisher */,
+        Promise.resolve().then(function () { return __webpack_require__(/*! ./helpers/window-events-publisher */ "./src/common/build-component-helpers/helpers/window-events-publisher.js"); }),
+    ],
+]);
+exports.getCreateComponentHelper = (function (value) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-      switch (_a.label) {
-        case 0:
-          return [4
-          /*yield*/
-          , createComponentHelpers.get(value)];
-
-        case 1:
-          return [2
-          /*return*/
-          , _a.sent()];
-      }
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, createComponentHelpers.get(value)];
+            case 1: return [2 /*return*/, (_a.sent())];
+        }
     });
-  });
-};
+}); });
+
 
 /***/ }),
 
-/***/ "./src/common/build-component-helpers/helpers/control-body-scroll.ts":
+/***/ "./src/common/build-component-helpers/helpers/control-body-scroll.js":
 /*!***************************************************************************!*\
-  !*** ./src/common/build-component-helpers/helpers/control-body-scroll.ts ***!
+  !*** ./src/common/build-component-helpers/helpers/control-body-scroll.js ***!
   \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var turnOnBodyScrolling = function turnOnBodyScrolling() {
-  document.body.style.overflowY = 'visible';
+Object.defineProperty(exports, "__esModule", { value: true });
+var turnOnBodyScrolling = function () {
+    document.body.style.overflowY = 'visible';
+};
+var turnOffBodyScrolling = function () {
+    document.body.style.overflowY = 'hidden';
+};
+exports.default = {
+    turnOnBodyScrolling: turnOnBodyScrolling,
+    turnOffBodyScrolling: turnOffBodyScrolling,
 };
 
-var turnOffBodyScrolling = function turnOffBodyScrolling() {
-  document.body.style.overflowY = 'hidden';
-};
-
-exports["default"] = {
-  turnOnBodyScrolling: turnOnBodyScrolling,
-  turnOffBodyScrolling: turnOffBodyScrolling
-};
 
 /***/ }),
 
-/***/ "./src/common/build-component-helpers/helpers/control-internal-state.ts":
+/***/ "./src/common/build-component-helpers/helpers/control-internal-state.js":
 /*!******************************************************************************!*\
-  !*** ./src/common/build-component-helpers/helpers/control-internal-state.ts ***!
+  !*** ./src/common/build-component-helpers/helpers/control-internal-state.js ***!
   \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var controlInternalState = function controlInternalState(initialValue) {
-  var state = {
-    value: initialValue
-  };
-  return [function () {
-    return state.value;
-  }, function (value) {
-    state.value = value;
-  }];
+Object.defineProperty(exports, "__esModule", { value: true });
+var controlInternalState = function (initialValue) {
+    var state = { value: initialValue };
+    return [
+        function () { return state.value; },
+        function (value) {
+            state.value = value;
+        },
+    ];
 };
+exports.default = controlInternalState;
 
-exports["default"] = controlInternalState;
 
 /***/ }),
 
-/***/ "./src/common/build-component-helpers/helpers/document-events-publisher.ts":
+/***/ "./src/common/build-component-helpers/helpers/document-events-publisher.js":
 /*!*********************************************************************************!*\
-  !*** ./src/common/build-component-helpers/helpers/document-events-publisher.ts ***!
+  !*** ./src/common/build-component-helpers/helpers/document-events-publisher.js ***!
   \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
-
 var publisher_subscriber_pattern_1 = __webpack_require__(/*! publisher-subscriber-pattern */ "./node_modules/publisher-subscriber-pattern/dist/index.js");
-
-var publisherScript = function publisherScript() {
-  exports.publisher = new publisher_subscriber_pattern_1.Publisher( // @ts-ignore
-  global.window ? global.window.document : window.document, 'addEventListener', 'removeEventListener');
+var publisherScript = function () {
+    exports.publisher = new publisher_subscriber_pattern_1.Publisher(
+    // @ts-ignore
+    global.window ? global.window.document : window.document, 'addEventListener', 'removeEventListener');
+    return exports.publisher;
 };
+exports.default = (function () { return publisherScript(); });
 
-publisherScript();
-exports["default"] = exports.publisher;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "./src/common/build-component-helpers/helpers/enqueue-script.ts":
+/***/ "./src/common/build-component-helpers/helpers/enqueue-script.js":
 /*!**********************************************************************!*\
-  !*** ./src/common/build-component-helpers/helpers/enqueue-script.ts ***!
+  !*** ./src/common/build-component-helpers/helpers/enqueue-script.js ***!
   \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.componentDidMountQueue = [];
-
-var enqueueScript = function enqueueScript(componentScript) {
-  exports.componentDidMountQueue.push(componentScript);
+var enqueueScript = function (componentScript) {
+    exports.componentDidMountQueue.push(componentScript);
+};
+exports.default = {
+    componentDidMountQueue: exports.componentDidMountQueue,
+    enqueueScript: enqueueScript,
 };
 
-exports["default"] = {
-  componentDidMountQueue: exports.componentDidMountQueue,
-  enqueueScript: enqueueScript
-};
 
 /***/ }),
 
-/***/ "./src/common/build-component-helpers/helpers/modify-body-class-list.ts":
+/***/ "./src/common/build-component-helpers/helpers/modify-body-class-list.js":
 /*!******************************************************************************!*\
-  !*** ./src/common/build-component-helpers/helpers/modify-body-class-list.ts ***!
+  !*** ./src/common/build-component-helpers/helpers/modify-body-class-list.js ***!
   \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var addBodyClass = function addBodyClass(className) {
-  document.body.classList.add(className);
+Object.defineProperty(exports, "__esModule", { value: true });
+var addBodyClass = function (className) {
+    document.body.classList.add(className);
+};
+var removeBodyClass = function (className) {
+    document.body.classList.remove(className);
+};
+exports.default = {
+    addBodyClass: addBodyClass,
+    removeBodyClass: removeBodyClass,
 };
 
-var removeBodyClass = function removeBodyClass(className) {
-  document.body.classList.remove(className);
-};
-
-exports["default"] = {
-  addBodyClass: addBodyClass,
-  removeBodyClass: removeBodyClass
-};
 
 /***/ }),
 
-/***/ "./src/common/build-component-helpers/helpers/window-events-publisher.ts":
+/***/ "./src/common/build-component-helpers/helpers/window-events-publisher.js":
 /*!*******************************************************************************!*\
-  !*** ./src/common/build-component-helpers/helpers/window-events-publisher.ts ***!
+  !*** ./src/common/build-component-helpers/helpers/window-events-publisher.js ***!
   \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
-
 var publisher_subscriber_pattern_1 = __webpack_require__(/*! publisher-subscriber-pattern */ "./node_modules/publisher-subscriber-pattern/dist/index.js");
-
-var publisherScript = function publisherScript() {
-  exports.publisher = new publisher_subscriber_pattern_1.Publisher( // @ts-ignore
-  global.window || window, 'addEventListener', 'removeEventListener');
+var publisherScript = function () {
+    exports.publisher = new publisher_subscriber_pattern_1.Publisher(
+    // @ts-ignore
+    global.window || window, 'addEventListener', 'removeEventListener');
+    return exports.publisher;
 };
+exports.default = (function () { return publisherScript(); });
 
-publisherScript();
-exports["default"] = exports.publisher;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "./src/common/build-component-helpers/index.ts":
+/***/ "./src/common/build-component-helpers/index.js":
 /*!*****************************************************!*\
-  !*** ./src/common/build-component-helpers/index.ts ***!
+  !*** ./src/common/build-component-helpers/index.js ***!
   \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-  }
-
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
-
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
 };
-
-var __generator = this && this.__generator || function (thisArg, body) {
-  var _ = {
-    label: 0,
-    sent: function sent() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    },
-    trys: [],
-    ops: []
-  },
-      f,
-      y,
-      t,
-      g;
-  return g = {
-    next: verb(0),
-    "throw": verb(1),
-    "return": verb(2)
-  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
-    };
-  }
-
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
-
-        switch (op[0]) {
-          case 0:
-          case 1:
-            t = op;
-            break;
-
-          case 4:
-            _.label++;
-            return {
-              value: op[1],
-              done: false
-            };
-
-          case 5:
-            _.label++;
-            y = op[1];
-            op = [0];
-            continue;
-
-          case 7:
-            op = _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0;
-              continue;
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
             }
-
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-              _.label = op[1];
-              break;
-            }
-
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
-              break;
-            }
-
-            if (t && _.label < t[2]) {
-              _.label = t[2];
-
-              _.ops.push(op);
-
-              break;
-            }
-
-            if (t[2]) _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-        }
-
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e];
-        y = 0;
-      } finally {
-        f = t = 0;
-      }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-
-    if (op[0] & 5) throw op[1];
-    return {
-      value: op[0] ? op[1] : void 0,
-      done: true
-    };
-  }
 };
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var create_component_helpers_1 = __webpack_require__(/*! ./create-component-helpers */ "./src/common/build-component-helpers/create-component-helpers.ts");
-
-exports.buildComponentHelpers = function (options) {
-  return __awaiter(void 0, void 0, void 0, function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var create_component_helpers_1 = __webpack_require__(/*! ./create-component-helpers */ "./src/common/build-component-helpers/create-component-helpers.js");
+exports.buildComponentHelpers = function (options) { return __awaiter(void 0, void 0, void 0, function () {
     var helpers, i, mod;
     return __generator(this, function (_a) {
-      switch (_a.label) {
-        case 0:
-          helpers = {};
-          i = 0;
-          _a.label = 1;
-
-        case 1:
-          if (!(i < options.length)) return [3
-          /*break*/
-          , 4];
-          return [4
-          /*yield*/
-          , create_component_helpers_1.getCreateComponentHelper(options[i])];
-
-        case 2:
-          mod = _a.sent();
-          helpers[options[i]] = mod["default"];
-          _a.label = 3;
-
-        case 3:
-          i++;
-          return [3
-          /*break*/
-          , 1];
-
-        case 4:
-          return [2
-          /*return*/
-          , helpers];
-      }
+        switch (_a.label) {
+            case 0:
+                helpers = {};
+                i = 0;
+                _a.label = 1;
+            case 1:
+                if (!(i < options.length)) return [3 /*break*/, 4];
+                return [4 /*yield*/, create_component_helpers_1.getCreateComponentHelper(options[i])];
+            case 2:
+                mod = _a.sent();
+                helpers[options[i]] = mod.default;
+                _a.label = 3;
+            case 3:
+                i++;
+                return [3 /*break*/, 1];
+            case 4: return [2 /*return*/, helpers];
+        }
     });
-  });
-};
+}); };
+
 
 /***/ }),
 
-/***/ "./src/common/build-create-component.ts":
+/***/ "./src/common/build-create-component.js":
 /*!**********************************************!*\
-  !*** ./src/common/build-create-component.ts ***!
+  !*** ./src/common/build-create-component.js ***!
   \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
-
-var __assign = this && this.__assign || function () {
-  __assign = Object.assign || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-
-      for (var p in s) {
-        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-      }
-    }
-
-    return t;
-  };
-
-  return __assign.apply(this, arguments);
-};
-
-var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
-    });
-  }
-
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
-
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-
-var __generator = this && this.__generator || function (thisArg, body) {
-  var _ = {
-    label: 0,
-    sent: function sent() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    },
-    trys: [],
-    ops: []
-  },
-      f,
-      y,
-      t,
-      g;
-  return g = {
-    next: verb(0),
-    "throw": verb(1),
-    "return": verb(2)
-  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
-    };
-  }
-
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
-
-        switch (op[0]) {
-          case 0:
-          case 1:
-            t = op;
-            break;
-
-          case 4:
-            _.label++;
-            return {
-              value: op[1],
-              done: false
-            };
-
-          case 5:
-            _.label++;
-            y = op[1];
-            op = [0];
-            continue;
-
-          case 7:
-            op = _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0;
-              continue;
-            }
-
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-              _.label = op[1];
-              break;
-            }
-
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
-              break;
-            }
-
-            if (t && _.label < t[2]) {
-              _.label = t[2];
-
-              _.ops.push(op);
-
-              break;
-            }
-
-            if (t[2]) _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
         }
-
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e];
-        y = 0;
-      } finally {
-        f = t = 0;
-      }
-    }
-
-    if (op[0] & 5) throw op[1];
-    return {
-      value: op[0] ? op[1] : void 0,
-      done: true
+        return t;
     };
-  }
+    return __assign.apply(this, arguments);
 };
-
-var __rest = this && this.__rest || function (s, e) {
-  var t = {};
-
-  for (var p in s) {
-    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-  }
-
-  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-  }
-  return t;
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var build_component_helpers_1 = __webpack_require__(/*! ./build-component-helpers */ "./src/common/build-component-helpers/index.ts");
-
-var build_style_1 = __webpack_require__(/*! ./utils/build-style */ "./src/common/utils/build-style.ts");
-
-exports.buildCreateComponent = function (_a) {
-  var _b = _a === void 0 ? {
-    render: function render() {
-      return '';
-    }
-  } : _a,
-      render = _b.render,
-      _c = _b.inject,
-      _d = (_c === void 0 ? {} : _c).classNames,
-      classNames = _d === void 0 ? {} : _d,
-      _e = _b.options,
-      options = _e === void 0 ? [] : _e,
-      _f = _b.globals,
-      globals = _f === void 0 ? {
-    createComponent: true,
-    helpers: false
-  } : _f;
-
-  return __awaiter(void 0, void 0, void 0, function () {
-    var createComponent, helpers;
-    return __generator(this, function (_g) {
-      switch (_g.label) {
-        case 0:
-          createComponent = function createComponent(_a) {
-            var componentId = _a.componentId,
-                _b = _a.className,
-                className = _b === void 0 ? '' : _b,
-                style = _a.style,
-                flex = _a.flex,
-                otherProps = __rest(_a, ["componentId", "className", "style", "flex"]);
-
-            var injectedClassName = componentId && classNames[componentId] ? classNames[componentId] : '';
-            return render(__assign(__assign({
-              style: build_style_1.buildStyle(style, flex)
-            }, otherProps), {
-              className: injectedClassName + " " + className
-            }));
-          };
-
-          return [4
-          /*yield*/
-          , build_component_helpers_1.buildComponentHelpers(options)];
-
-        case 1:
-          helpers = _g.sent();
-          if (globals.createComponent) global.createComponent = createComponent;
-          if (globals.helpers) global.helpers = helpers;
-          return [2
-          /*return*/
-          , {
-            createComponent: createComponent,
-            helpers: helpers
-          }];
-      }
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-  });
 };
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var build_component_helpers_1 = __webpack_require__(/*! ./build-component-helpers */ "./src/common/build-component-helpers/index.js");
+var build_style_1 = __webpack_require__(/*! ./utils/build-style */ "./src/common/utils/build-style.js");
+exports.buildCreateComponent = function (_a) {
+    var _b = _a === void 0 ? { render: function () { return ''; } } : _a, render = _b.render, _c = _b.inject, _d = (_c === void 0 ? {} : _c).classNames, classNames = _d === void 0 ? {} : _d, _e = _b.options, options = _e === void 0 ? [] : _e, _f = _b.globals, globals = _f === void 0 ? {
+        createComponent: true,
+        helpers: false,
+    } : _f;
+    return __awaiter(void 0, void 0, void 0, function () {
+        var createComponent, helpers;
+        return __generator(this, function (_g) {
+            switch (_g.label) {
+                case 0:
+                    createComponent = function (_a) {
+                        var componentId = _a.componentId, _b = _a.className, className = _b === void 0 ? '' : _b, style = _a.style, flex = _a.flex, otherProps = __rest(_a, ["componentId", "className", "style", "flex"]);
+                        var injectedClassName = (componentId && classNames[componentId])
+                            ? classNames[componentId]
+                            : '';
+                        return render(__assign(__assign({ style: build_style_1.buildStyle(style, flex) }, otherProps), { className: injectedClassName + " " + className }));
+                    };
+                    return [4 /*yield*/, build_component_helpers_1.buildComponentHelpers(options)];
+                case 1:
+                    helpers = _g.sent();
+                    if (globals.createComponent)
+                        global.createComponent = createComponent;
+                    if (globals.helpers)
+                        global.helpers = helpers;
+                    return [2 /*return*/, {
+                            createComponent: createComponent,
+                            helpers: helpers,
+                        }];
+            }
+        });
+    });
+};
+
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
-/***/ "./src/common/index.ts":
+/***/ "./src/common/index.js":
 /*!*****************************!*\
-  !*** ./src/common/index.ts ***!
+  !*** ./src/common/index.js ***!
   \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var build_create_component_1 = __webpack_require__(/*! ./build-create-component */ "./src/common/build-create-component.ts");
-
+Object.defineProperty(exports, "__esModule", { value: true });
+var build_create_component_1 = __webpack_require__(/*! ./build-create-component */ "./src/common/build-create-component.js");
 exports.buildCreateComponent = build_create_component_1.buildCreateComponent;
+
 
 /***/ }),
 
-/***/ "./src/common/utils/build-style.ts":
+/***/ "./src/common/utils/build-style.js":
 /*!*****************************************!*\
-  !*** ./src/common/utils/build-style.ts ***!
+  !*** ./src/common/utils/build-style.js ***!
   \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-var __assign = this && this.__assign || function () {
-  __assign = Object.assign || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-
-      for (var p in s) {
-        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-      }
-    }
-
-    return t;
-  };
-
-  return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
+Object.defineProperty(exports, "__esModule", { value: true });
 var inline_style_prefixer_1 = __webpack_require__(/*! inline-style-prefixer */ "./node_modules/inline-style-prefixer/es/index.js");
-
 exports.buildStyle = function (style, flex) {
-  return flex ? __assign(__assign(__assign({
-    display: 'flex'
-  }, flex), style), inline_style_prefixer_1.prefix(__assign(__assign({}, flex), style))) : __assign(__assign({}, style), inline_style_prefixer_1.prefix(style));
+    return flex
+        ? __assign(__assign(__assign({ display: 'flex' }, flex), style), inline_style_prefixer_1.prefix(__assign(__assign({}, flex), style))) : __assign(__assign({}, style), inline_style_prefixer_1.prefix(style));
 };
+
 
 /***/ }),
 
@@ -5165,7 +4736,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var server_1 = __webpack_require__(/*! ./server/ */ "./src/server/index.ts");
+var server_1 = __webpack_require__(/*! ./server/ */ "./src/server/index.js");
 
 exports.buildCreateComponent = function (_a) {
   var _b = _a === void 0 ? {} : _a,
@@ -5215,225 +4786,91 @@ exports.buildCreateComponent = function (_a) {
 
 /***/ }),
 
-/***/ "./src/server/build-create-component.ts":
+/***/ "./src/server/build-create-component.js":
 /*!**********************************************!*\
-  !*** ./src/server/build-create-component.ts ***!
+  !*** ./src/server/build-create-component.js ***!
   \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-  }
-
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
-
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
 };
-
-var __generator = this && this.__generator || function (thisArg, body) {
-  var _ = {
-    label: 0,
-    sent: function sent() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    },
-    trys: [],
-    ops: []
-  },
-      f,
-      y,
-      t,
-      g;
-  return g = {
-    next: verb(0),
-    "throw": verb(1),
-    "return": verb(2)
-  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
-    };
-  }
-
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
-
-        switch (op[0]) {
-          case 0:
-          case 1:
-            t = op;
-            break;
-
-          case 4:
-            _.label++;
-            return {
-              value: op[1],
-              done: false
-            };
-
-          case 5:
-            _.label++;
-            y = op[1];
-            op = [0];
-            continue;
-
-          case 7:
-            op = _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0;
-              continue;
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
             }
-
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-              _.label = op[1];
-              break;
-            }
-
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
-              break;
-            }
-
-            if (t && _.label < t[2]) {
-              _.label = t[2];
-
-              _.ops.push(op);
-
-              break;
-            }
-
-            if (t[2]) _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-        }
-
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e];
-        y = 0;
-      } finally {
-        f = t = 0;
-      }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-
-    if (op[0] & 5) throw op[1];
-    return {
-      value: op[0] ? op[1] : void 0,
-      done: true
-    };
-  }
 };
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var common_1 = __webpack_require__(/*! ../common/ */ "./src/common/index.ts");
-
-var render = __webpack_require__(/*! rendering-recursive-server-side */ "./node_modules/rendering-recursive-server-side/index.js")["default"];
-
-var buildCreateComponent = function buildCreateComponent(_a) {
-  var _b = _a === void 0 ? {} : _a,
-      _c = _b.inject,
-      _d = (_c === void 0 ? {} : _c).classNames,
-      classNames = _d === void 0 ? {} : _d,
-      _e = _b.options,
-      options = _e === void 0 ? [] : _e,
-      _f = _b.globals,
-      globals = _f === void 0 ? {
-    createComponent: true,
-    helpers: false
-  } : _f;
-
-  return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_g) {
-      switch (_g.label) {
-        case 0:
-          return [4
-          /*yield*/
-          , common_1.buildCreateComponent({
-            render: render,
-            inject: {
-              classNames: classNames
-            },
-            options: options,
-            globals: globals
-          })];
-
-        case 1:
-          return [2
-          /*return*/
-          , _g.sent()];
-      }
+Object.defineProperty(exports, "__esModule", { value: true });
+var common_1 = __webpack_require__(/*! ../common/ */ "./src/common/index.js");
+var render = __webpack_require__(/*! rendering-recursive-server-side */ "./node_modules/rendering-recursive-server-side/index.js").default;
+var buildCreateComponent = function (_a) {
+    var _b = _a === void 0 ? {} : _a, _c = _b.inject, _d = (_c === void 0 ? {} : _c).classNames, classNames = _d === void 0 ? {} : _d, _e = _b.options, options = _e === void 0 ? [] : _e, _f = _b.globals, globals = _f === void 0 ? {
+        createComponent: true,
+        helpers: false,
+    } : _f;
+    return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_g) {
+            switch (_g.label) {
+                case 0: return [4 /*yield*/, common_1.buildCreateComponent({
+                        render: render,
+                        inject: { classNames: classNames },
+                        options: options,
+                        globals: globals,
+                    })];
+                case 1: return [2 /*return*/, _g.sent()];
+            }
+        });
     });
-  });
 };
-
 exports.buildCreateComponent = buildCreateComponent;
+
 
 /***/ }),
 
-/***/ "./src/server/index.ts":
+/***/ "./src/server/index.js":
 /*!*****************************!*\
-  !*** ./src/server/index.ts ***!
+  !*** ./src/server/index.js ***!
   \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var build_create_component_1 = __webpack_require__(/*! ./build-create-component */ "./src/server/build-create-component.ts");
-
+Object.defineProperty(exports, "__esModule", { value: true });
+var build_create_component_1 = __webpack_require__(/*! ./build-create-component */ "./src/server/build-create-component.js");
 exports.buildCreateComponent = build_create_component_1.buildCreateComponent;
+
 
 /***/ })
 
