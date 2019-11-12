@@ -13,3 +13,7 @@
 # @0.1.4 [author: Katarzyna Ziomek-Zdanowicz, date: 2019.11.10]
 * Modifies buildStyle utility, so the prefixed css properties are not overwritten
 * Upgrades rendering-recursive packages to 0.1.5
+
+# @0.1.5 [author: Katarzyna Ziomek-Zdanowicz, date: 2019.11.12]
+* Adds unit tests for createComponent builders
+* Changes events publisher: publisher returned from builder instead created within module scope
