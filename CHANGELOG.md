@@ -16,4 +16,10 @@
 
 # @0.1.5 [author: Katarzyna Ziomek-Zdanowicz, date: 2019.11.12]
 * Adds unit tests for createComponent builders
-* Changes events publisher: publisher returned from builder instead created within module scope
+* Changes events publisher helpers: modules return functions for creating publishers
+
+# @0.1.6 [author: Katarzyna Ziomek-Zdanowicz, date: 2019.11.12]
+* Changes events publisher helpers: modules return IIFE for creating publishers
+
+
+
