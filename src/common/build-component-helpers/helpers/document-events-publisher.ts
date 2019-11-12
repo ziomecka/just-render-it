@@ -14,4 +14,4 @@ const publisherScript = (): Publisher => {
   return publisher;
 };
 
-export default () => publisherScript();
+export default (() => publisherScript())();
