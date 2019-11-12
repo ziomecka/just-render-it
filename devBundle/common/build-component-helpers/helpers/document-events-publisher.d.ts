@@ -1,3 +1,4 @@
 import { Publisher } from 'publisher-subscriber-pattern';
 export declare let publisher: Publisher;
-export default publisher;
+declare const _default: () => Publisher;
+export default _default;

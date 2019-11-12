@@ -4440,10 +4440,12 @@ var publisher_subscriber_pattern_1 = __webpack_require__(/*! publisher-subscribe
 var publisherScript = function publisherScript() {
   exports.publisher = new publisher_subscriber_pattern_1.Publisher( // @ts-ignore
   global.window ? global.window.document : window.document, 'addEventListener', 'removeEventListener');
+  return exports.publisher;
 };
 
-publisherScript();
-exports["default"] = exports.publisher;
+exports["default"] = function () {
+  return publisherScript();
+};
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -4523,10 +4525,12 @@ var publisher_subscriber_pattern_1 = __webpack_require__(/*! publisher-subscribe
 var publisherScript = function publisherScript() {
   exports.publisher = new publisher_subscriber_pattern_1.Publisher( // @ts-ignore
   global.window || window, 'addEventListener', 'removeEventListener');
+  return exports.publisher;
 };
 
-publisherScript();
-exports["default"] = exports.publisher;
+exports["default"] = function () {
+  return publisherScript();
+};
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
